@@ -60,6 +60,10 @@ app.get('/karen', (req, res) => {
     console.log(req.body)
     res.send('Hello World!');
 })
+app.post('/karen', (req, res) => {
+    console.log(req.body)
+    res.send('Hello World!');
+})
     // .route('/comments')
     // .get( (req, res) => {
     //     res.send("Comments GET");
