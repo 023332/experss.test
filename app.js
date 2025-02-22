@@ -75,5 +75,3 @@ app.get('/karen', (req, res) => {
 app.listen(3000, 'localhost', () => {
     console.log("Listen on 3000");
 });
-
-console.log("Listen on port 3000");
