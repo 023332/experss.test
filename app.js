@@ -13,19 +13,7 @@ import router from "./routes/index.js";
 //     console.log("Listen on 3000");
 // });
 
-
 const app = express();
-var urlencodedParser = express.urlencoded({ extended: false })
-
-// POST /login gets urlencoded bodies
-app.post('/login', urlencodedParser, function (req, res) {
-    res.send('welcome, ' + req.body.username)
-})
-app.use(express.json());
-
-
-app.use(morgan("dev"));
-
 // const handler1 = (req, res, next) => {
 //     console.log("Handler 1");
 //     req.customData = 'This is a custom data from handler 1';
