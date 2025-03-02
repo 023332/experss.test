@@ -8,10 +8,10 @@ const PORT = 3000;
 
 app.use(bodyParser.json());
 
-// Routes
+
 app.use('/tasks', taskRoutes);
 
-// Start the server
+
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
