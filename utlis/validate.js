@@ -1,4 +1,5 @@
 
+
 export const validateTask = (title, description, taskDate) => {
     if (!title || !description || !taskDate) {
         return false;
