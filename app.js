@@ -1,71 +1,17 @@
-import express, {urlencoded} from "express";
-import  morgan from "morgan";
-import router from "./routes/index.js";
-
-// const app = express();
-
-// app.get("/karen", (req, res) => {
-//     res.send("Hello world");
-// })
-
-
-// app.listen(3000, 'localhost', () =>{
-//     console.log("Listen on 3000");
-// });
+import express from 'express';
+import bodyParser from 'body-parser';
+import taskRoutes from './routes/taskRoutes.js';
 
 const app = express();
-// const handler1 = (req, res, next) => {
-//     console.log("Handler 1");
-//     req.customData = 'This is a custom data from handler 1';
-//     next();
-// };
+const PORT = 3000;
 
-// const handler2 = (req, res) => {
-//     console.log("Handler 2");
-//     res.send(`Handler 2 received: ${req.customData}`);
-// };
+// Middleware
+app.use(bodyParser.json());
 
-// const handler3 = (req, res) => {
+// Routes
+app.use('/tasks', taskRoutes);
 
-//     res.send(`Handler 3 received`);
-// };
-
-// app.post("/user/:id/:type", (req, res) => {
-//    console.log(req.params);
-//    console.log(req.query);
-//     res.send(`User id:`);
-// });
-
-app.use( router);
-
-const logger = (req,res,next)=>{
-    console.log(`${req.method} ${req.originalUrl}`);
-    next();
-}
-app.use(logger)
-
-app.get('/karen', (req, res) => {
-    console.log(req.body)
-    res.send('Hello World!');
-})
-app.post('/karen', (req, res) => {
-    console.log(req.body)
-    res.send('Hello World!');
-})
-    // .route('/comments')
-    // .get( (req, res) => {
-    //     res.send("Comments GET");
-    // })
-    // .post( (req, res) => {
-    //     res.send("Comments POST");
-    // });
-// app.post("/data", (req, res) => {
-//     res.send('Hello World!');
-// });
-// app.post("/data", handler1, handler2);
-
-app.listen(3000, 'localhost', () => {
-    console.log("Listen on 3000");
+// Start the server
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
 });
-const port = 10;
-console.log(`Listen on ${port}`);
