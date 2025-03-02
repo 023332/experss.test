@@ -3,7 +3,7 @@ import {
     validateTask,
     validateTaskDate,
     validateTaskLimit,
-} from '../utils/validate.js';
+} from '../utlis/validate.js';
 
 let tasks = [];
 
@@ -11,7 +11,7 @@ let tasks = [];
 export const createTask = (req, res) => {
     const { title, description, taskDate } = req.body;
 
-    // Validate task data
+
     if (!validateTask(title, description, taskDate)) {
         return res.status(400).json({ error: 'Invalid task data' });
     }
