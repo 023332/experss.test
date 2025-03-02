@@ -1,4 +1,3 @@
-
 import { v4 as uuidv4 } from 'uuid';
 import {
     validateTask,
@@ -8,21 +7,21 @@ import {
 
 let tasks = [];
 
-
+// Create a new task
 export const createTask = (req, res) => {
     const { title, description, taskDate } = req.body;
 
-
+    // Validate task data
     if (!validateTask(title, description, taskDate)) {
         return res.status(400).json({ error: 'Invalid task data' });
     }
 
-
+    // Validate task date (must not be in the past)
     if (!validateTaskDate(taskDate)) {
         return res.status(400).json({ error: 'Task date cannot be in the past' });
     }
 
-
+    // Validate task limit (max 3 tasks per day)
     if (!validateTaskLimit(taskDate, tasks)) {
         return res.status(400).json({ error: 'Maximum 3 tasks allowed per day' });
     }
@@ -39,16 +38,17 @@ export const createTask = (req, res) => {
     res.status(201).json(newTask);
 };
 
+// Get all tasks with pagination
 export const getAllTasks = (req, res) => {
     const page = parseInt(req.query.page) || 1;
     const limit = 10;
     const startIndex = (page - 1) * limit;
     const endIndex = page * limit;
 
-
+    // Sort tasks by taskDate
     const sortedTasks = tasks.sort((a, b) => new Date(a.taskDate) - new Date(b.taskDate));
 
-
+    // Paginate tasks
     const paginatedTasks = sortedTasks.slice(startIndex, endIndex);
 
     res.json({
@@ -58,7 +58,7 @@ export const getAllTasks = (req, res) => {
     });
 };
 
-
+// Get a task by ID
 export const getTaskById = (req, res) => {
     const taskId = req.params.id;
     const task = tasks.find((t) => t.id === taskId);
@@ -70,7 +70,7 @@ export const getTaskById = (req, res) => {
     res.json(task);
 };
 
-
+// Update a task
 export const updateTask = (req, res) => {
     const taskId = req.params.id;
     const { title, description, completed, taskDate } = req.body;
@@ -81,7 +81,7 @@ export const updateTask = (req, res) => {
         return res.status(404).json({ error: 'Task not found' });
     }
 
-
+    // Update task
     tasks[taskIndex] = {
         ...tasks[taskIndex],
         title: title || tasks[taskIndex].title,
@@ -93,7 +93,7 @@ export const updateTask = (req, res) => {
     res.json(tasks[taskIndex]);
 };
 
-
+// Delete a task
 export const deleteTask = (req, res) => {
     const taskId = req.params.id;
     const taskIndex = tasks.findIndex((t) => t.id === taskId);
