@@ -1,6 +1,6 @@
 
-const { v4: uuidv4 } = require('uuid');
-const db = require('../utils/db');
+import { v4 as uuidv4 } from 'uuid';
+import db from '../utils/db.js';
 
 class Task {
     constructor(title, description, taskDate) {

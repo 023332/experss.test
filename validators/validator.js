@@ -1,5 +1,5 @@
 
-const Joi = require('joi');
+import Joi from 'joi';
 
 const taskSchema = Joi.object({
     title: Joi.string().required(),

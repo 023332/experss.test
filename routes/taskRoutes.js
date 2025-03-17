@@ -1,3 +1,6 @@
+import express from 'express';
+import { createTask, getAllTasks, getTaskById, updateTask, deleteTask } from '../controllers/taskController.js';
+import { validateTask } from '../validators/validator.js';
 
 const express = require('express');
 const { createTask, getAllTasks, getTaskById, updateTask, deleteTask } = require('../controllers/taskController');

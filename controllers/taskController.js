@@ -1,5 +1,5 @@
 
-const Task = require('../models/taskModel');
+import Task from '../models/taskModel.js';
 
 const createTask = async (req, res) => {
     const { title, description, taskDate } = req.body;
