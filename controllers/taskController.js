@@ -1,70 +1,64 @@
-import { v4 as uuidv4 } from 'uuid';
-import { validateTask, validateTaskDate, validateTaskLimit } from '../utils/validate.js';
 
-let tasks = [];
+const Task = require('../models/taskModel');
 
-export const createTask = (req, res) => {
+const createTask = async (req, res) => {
     const { title, description, taskDate } = req.body;
-
-    const validationError = validateTask(title, description, taskDate);
-    if (validationError) {
-        return res.status(400).json({ error: validationError });
+    try {
+        const task = await Task.createTask(title, description, taskDate);
+        res.status(201).json(task);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
     }
-
-    if (!validateTaskDate(taskDate)) {
-        return res.status(400).json({ error: 'Task date cannot be in the past' });
-    }
-
-    if (!validateTaskLimit(taskDate, tasks)) {
-        return res.status(400).json({ error: 'Maximum of 3 tasks allowed per day' });
-    }
-
-    const newTask = {
-        id: uuidv4(),
-        title,
-        description,
-        completed: false,
-        taskDate,
-    };
-
-    tasks.push(newTask);
-    tasks.sort((a, b) => new Date(a.taskDate) - new Date(b.taskDate));
-    res.status(201).json(newTask);
 };
 
-export const getTasks = (req, res) => {
-    const page = parseInt(req.query.page) || 1;
-    const pageSize = 10;
-    const startIndex = (page - 1) * pageSize;
-    const paginatedTasks = tasks.slice(startIndex, startIndex + pageSize);
-    res.json(paginatedTasks);
+const getAllTasks = async (req, res) => {
+    const { page = 1 } = req.query;
+    try {
+        const tasks = await Task.getAllTasks(page);
+        res.status(200).json(tasks);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
 };
 
-export const getTaskById = (req, res) => {
-    const task = tasks.find(t => t.id === req.params.id);
-    if (!task) {
-        return res.status(404).json({ error: 'Task not found' });
+const getTaskById = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const task = await Task.getTaskById(id);
+        if (!task) {
+            return res.status(404).json({ error: 'Task not found' });
+        }
+        res.status(200).json(task);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
     }
-    res.json(task);
 };
 
-export const updateTask = (req, res) => {
-    const taskIndex = tasks.findIndex(t => t.id === req.params.id);
-    if (taskIndex === -1) {
-        return res.status(404).json({ error: 'Task not found' });
-    }
-
+const updateTask = async (req, res) => {
+    const { id } = req.params;
     const { title, description, completed, taskDate } = req.body;
-    const validationError = validateTask(title, description, taskDate);
-    if (validationError) {
-        return res.status(400).json({ error: validationError });
+    try {
+        const task = await Task.updateTask(id, title, description, completed, taskDate);
+        res.status(200).json(task);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
     }
-
-    tasks[taskIndex] = { ...tasks[taskIndex], title, description, completed, taskDate };
-    res.json(tasks[taskIndex]);
 };
 
-export const deleteTask = (req, res) => {
-    tasks = tasks.filter(t => t.id !== req.params.id);
-    res.json({ message: 'Task deleted' });
+const deleteTask = async (req, res) => {
+    const { id } = req.params;
+    try {
+        await Task.deleteTask(id);
+        res.status(200).json({ message: 'Task has been removed' });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
+module.exports = {
+    createTask,
+    getAllTasks,
+    getTaskById,
+    updateTask,
+    deleteTask,
 };

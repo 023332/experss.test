@@ -1,57 +1,98 @@
-# Todo List API
+# Node Express Backend
 
-## Overview
-This project is a simple Todo List API built with Node.js and Express. It allows users to manage tasks with features such as creating, retrieving, updating, and deleting tasks. The API supports pagination and validation to ensure data integrity.
+This project is a backend application built using Node.js and Express. It provides a RESTful API for managing tasks and user authentication, utilizing MySQL as the database and Joi for data validation.
+
+## Features
+
+- User registration and login with JWT authentication
+- CRUD operations for tasks
+- Input validation using Joi
+- Middleware for authentication and validation
+- MySQL database integration
 
 ## Project Structure
+
 ```
-todo-list-api
-├── controllers
-│   └── taskController.js      # Handles task-related operations
-├── routes
-│   └── taskRoutes.js          # Defines routes for task operations
-├── utils
-│   └── validate.js            # Contains validation functions for task data
-├── .env                        # Environment variables
-├── app.js                      # Entry point of the application
-├── package.json                # npm configuration file
-└── README.md                   # Project documentation
+node-express-backend
+├── src
+│   ├── controllers
+│   │   ├── authController.js
+│   │   └── taskController.js
+│   ├── middlewares
+│   │   ├── authMiddleware.js
+│   │   └── validationMiddleware.js
+│   ├── models
+│   │   ├── taskModel.js
+│   │   └── userModel.js
+│   ├── routes
+│   │   ├── authRoutes.js
+│   │   └── taskRoutes.js
+│   ├── services
+│   │   ├── authService.js
+│   │   └── taskService.js
+│   ├── utils
+│   │   └── db.js
+│   ├── app.js
+│   └── server.js
+├── package.json
+├── .env
+└── README.md
 ```
 
 ## Installation
+
 1. Clone the repository:
    ```
    git clone <repository-url>
    ```
+
 2. Navigate to the project directory:
    ```
-   cd todo-list-api
+   cd node-express-backend
    ```
+
 3. Install the dependencies:
    ```
    npm install
    ```
 
+4. Create a `.env` file in the root directory and add your database connection details and secret keys:
+   ```
+   DB_HOST=your_database_host
+   DB_USER=your_database_user
+   DB_PASSWORD=your_database_password
+   DB_NAME=your_database_name
+   JWT_SECRET=your_jwt_secret
+   ```
+
 ## Usage
-1. Create a `.env` file in the root directory and add your environment variables.
-2. Start the server:
+
+1. Start the server:
    ```
    npm start
    ```
-3. The API will be running on `http://localhost:3000`.
+
+2. The API will be available at `http://localhost:3000`.
 
 ## API Endpoints
-- **POST /tasks**: Create a new task.
-- **GET /tasks**: Retrieve a paginated list of tasks.
-- **GET /tasks/:id**: Retrieve a specific task by its ID.
-- **PUT /tasks/:id**: Update an existing task.
-- **DELETE /tasks/:id**: Delete a task by its ID.
 
-## Validation
-The API includes validation for task data:
-- Title and description are required.
-- Task date must be in the format YYYY-MM-DD and cannot be in the past.
-- A maximum of three tasks can be created for the same date.
+### Authentication
+
+- **POST /api/auth/register**: Register a new user
+- **POST /api/auth/login**: Log in an existing user
+
+### Tasks
+
+- **POST /api/tasks**: Create a new task
+- **GET /api/tasks**: Retrieve all tasks
+- **GET /api/tasks/:id**: Retrieve a task by ID
+- **PUT /api/tasks/:id**: Update a task by ID
+- **DELETE /api/tasks/:id**: Delete a task by ID
+
+## Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
 
 ## License
-This project is licensed under the MIT License.# expers
+
+This project is licensed under the MIT License.

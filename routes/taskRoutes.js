@@ -1,12 +1,14 @@
-import express from 'express';
-import { createTask, getTasks, getTaskById, updateTask, deleteTask } from '../controllers/taskController.js';
+
+const express = require('express');
+const { createTask, getAllTasks, getTaskById, updateTask, deleteTask } = require('../controllers/taskController');
+const { validateTask } = require('../validators/validator');
 
 const router = express.Router();
 
-router.post('/', createTask);
-router.get('/', getTasks);
-router.get('/:id', getTaskById);
-router.put('/:id', updateTask);
-router.delete('/:id', deleteTask);
+router.post('/tasks', validateTask, createTask);
+router.get('/tasks', getAllTasks);
+router.get('/tasks/:id', getTaskById);
+router.put('/tasks/:id', validateTask, updateTask);
+router.delete('/tasks/:id', deleteTask);
 
-export default router;
+module.exports = router;
