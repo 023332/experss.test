@@ -4,7 +4,7 @@ const Joi = require('joi');
 const taskSchema = Joi.object({
     title: Joi.string().required(),
     description: Joi.string().required(),
-    taskDate: Joi.date().greater('new').required(),
+    taskDate: Joi.date().greater('now').required(),
     completed: Joi.boolean(),
 });
 

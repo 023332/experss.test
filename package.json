@@ -1,7 +1,6 @@
 {
-  "name": "homework_7",
+  "name": "express.test",
   "version": "1.0.0",
-  "description": "A backend application using Node.js and Express with authentication and task management.",
   "main": "src/server.js",
   "scripts": {
     "start": "nodemon server.js"
