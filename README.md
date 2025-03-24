@@ -1,98 +1,80 @@
-# Node Express Backend
+# Express EJS App
 
-This project is a backend application built using Node.js and Express. It provides a RESTful API for managing tasks and user authentication, utilizing MySQL as the database and Joi for data validation.
-
-## Features
-
-- User registration and login with JWT authentication
-- CRUD operations for tasks
-- Input validation using Joi
-- Middleware for authentication and validation
-- MySQL database integration
+## Overview
+This project is an Express.js application that uses EJS as the templating engine. It provides user authentication functionalities, including registration and login, along with additional features.
 
 ## Project Structure
-
 ```
-node-express-backend
+express-ejs-app
 ├── src
 │   ├── controllers
 │   │   ├── authController.js
-│   │   └── taskController.js
-│   ├── middlewares
-│   │   ├── authMiddleware.js
-│   │   └── validationMiddleware.js
+│   │   └── otherController.js
 │   ├── models
-│   │   ├── taskModel.js
 │   │   └── userModel.js
 │   ├── routes
 │   │   ├── authRoutes.js
-│   │   └── taskRoutes.js
-│   ├── services
-│   │   ├── authService.js
-│   │   └── taskService.js
-│   ├── utils
-│   │   └── db.js
+│   │   └── otherRoutes.js
+│   ├── views
+│   │   ├── layouts
+│   │   │   └── main.ejs
+│   │   ├── auth
+│   │   │   ├── login.ejs
+│   │   │   └── register.ejs
+│   │   └── index.ejs
 │   ├── app.js
-│   └── server.js
-├── package.json
+│   └── config
+│       └── db.js
+├── public
+│   ├── css
+│   │   └── styles.css
+│   ├── js
+│   │   └── scripts.js
+│   └── images
 ├── .env
-└── README.md
+├── package.json
+├── README.md
+└── server.js
 ```
 
 ## Installation
-
 1. Clone the repository:
    ```
    git clone <repository-url>
    ```
-
 2. Navigate to the project directory:
    ```
-   cd node-express-backend
+   cd express-ejs-app
    ```
-
 3. Install the dependencies:
    ```
    npm install
    ```
 
-4. Create a `.env` file in the root directory and add your database connection details and secret keys:
+## Configuration
+1. Create a `.env` file in the root directory and add the necessary environment variables:
    ```
-   DB_HOST=your_database_host
-   DB_USER=your_database_user
-   DB_PASSWORD=your_database_password
-   DB_NAME=your_database_name
+   PORT=3000
    JWT_SECRET=your_jwt_secret
+   MONGODB_URI=your_mongodb_connection_string
    ```
 
 ## Usage
-
 1. Start the server:
    ```
    npm start
    ```
+2. Open your browser and navigate to `http://localhost:3000` to access the application.
 
-2. The API will be available at `http://localhost:3000`.
-
-## API Endpoints
-
-### Authentication
-
-- **POST /api/auth/register**: Register a new user
-- **POST /api/auth/login**: Log in an existing user
-
-### Tasks
-
-- **POST /api/tasks**: Create a new task
-- **GET /api/tasks**: Retrieve all tasks
-- **GET /api/tasks/:id**: Retrieve a task by ID
-- **PUT /api/tasks/:id**: Update a task by ID
-- **DELETE /api/tasks/:id**: Delete a task by ID
+## Features
+- User registration and login
+- EJS templating for dynamic views
+- Password hashing with bcrypt
+- Input validation with Joi
 
 ## Contributing
-
-Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
-
-## License
-
-This project is licensed under the MIT License.
+Feel free to submit issues or pull requests for improvements and bug fixes.# Exam_3
+# Exam_3
+# Exam_3
+# Exam_3
+# Exam_3

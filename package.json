@@ -1,22 +1,37 @@
 {
-  "name": "express.test",
-  "version": "1.0.0",
-  "main": "src/server.js",
+  "name": "auth-project",
+  "version": "0.0.1",
+  "private": true,
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "DEBUG=auth-project:* nodemon ./bin/www"
   },
+  "type": "module",
   "dependencies": {
     "bcrypt": "^5.1.1",
-    "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.3",
-    "dotenv": "^10.0.0",
-    "express": "^4.17.1",
-    "joi": "^17.4.0",
+    "cookie-parser": "~1.4.7",
+    "crypto-js": "^4.2.0",
+    "debug": "~4.4.0",
+    "dotenv": "^16.4.7",
+    "ejs": "~3.1.10",
+    "express": "~4.21.2",
+    "express-session": "^1.18.1",
+    "git": "^0.1.5",
+    "http-errors": "~2.0.0",
+    "install": "^0.13.0",
+    "joi": "^17.13.3",
     "jsonwebtoken": "^9.0.2",
-    "mysql2": "^3.13.0",
+    "lodash": "^4.17.21",
+    "md5": "^2.3.0",
+    "moment": "^2.30.1",
+    "mongoose": "^8.13.0",
+    "morgan": "~1.10.0",
+    "mysql2": "^3.14.0",
+    "npm-git-install": "^0.3.0",
     "uuid": "^11.1.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.7"
-  }
+    "nodemon": "^3.1.9"
+  },
+  "gitDependencies": {}
 }
