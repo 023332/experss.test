@@ -1,25 +1,35 @@
-import mongoose from 'mongoose';
+import _ from "lodash";
+import db from '../clients/db.mysql.js';
 
-const userSchema = new mongoose.Schema({
-    fName: {
-        type: String,
-        required: true
-    },
-    lName: {
-        type: String,
-        required: true
-    },
-    email: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    password: {
-        type: String,
-        required: true
-    }
-});
+export default {
+  async getUserProfile(id) {
+    const [raws] = await db.query(`
+       SELECT * FROM users 
+        `)
 
-const User = mongoose.model('User', userSchema);
+    return raws
+  },
 
-export default User;
+  async createPost (id) {
+    const [raws] = await db.query(`
+       SELECT * FROM users WHERE id = ?
+        `, [id])
+
+    return _.head(raws)|| null;
+  },
+
+  async create(first_name, last_name, email, dob, password) {
+    const [raws] = await db.query(`
+        INSERT INTO users (first_name, last_name,email, dob)
+        VALUES (?,?,?,?,?) 
+        `, [first_name, last_name, email, dob, password])
+
+    return raws
+  },
+  findAll(param) {
+    
+  },
+  findOne(param) {
+    
+  }
+}

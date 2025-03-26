@@ -25,13 +25,15 @@ h1 {
 form {
     background: #ffffff;
     padding: 20px;
+    margin: 20px 0;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 input[type="text"],
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+textarea {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
@@ -43,7 +45,7 @@ input[type="submit"] {
     background: #35424a;
     color: #ffffff;
     border: none;
-    padding: 10px;
+    padding: 10px 15px;
     cursor: pointer;
     border-radius: 5px;
 }
@@ -52,12 +54,17 @@ input[type="submit"]:hover {
     background: #45a049;
 }
 
-footer {
-    text-align: center;
-    padding: 20px;
-    background: #35424a;
-    color: #ffffff;
-    position: relative;
-    bottom: 0;
-    width: 100%;
+.post {
+    background: #ffffff;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.comment {
+    background: #f9f9f9;
+    padding: 10px;
+    margin: 5px 0;
+    border-left: 3px solid #35424a;
 }
